@@ -7,7 +7,7 @@ import (
 )
 
 func Run(c *cli.Context) {
-	ip, err := utils.GetIp("http://ifconfig.info/ip")
+	ip, err := utils.GetIp("http://ip.codesky.me")
 	log.Info(ip)
 	if err != nil {
 		return
