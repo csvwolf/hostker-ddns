@@ -6,8 +6,8 @@ import (
 )
 
 // CPUMonitor retrives the cpu usage data in the given time
-func (u *User) CPUMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse){
-	var b map[string]string
+func (u *User) CPUMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["uuid"] = uuid
 	b["startTime"] = strconv.Itoa(startTime)
 	b["endTime"] = strconv.Itoa(endTime)
@@ -22,8 +22,8 @@ func (u *User) CPUMonitor(uuid string, startTime int, endTime int, unit string) 
 
 // NetMonitor provide public external internet network statistics of specific virtual machine
 // All outgoing internet traffic (e.g. website traffic)
-func (u *User) NetMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse){
-	var b map[string]string
+func (u *User) NetMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["uuid"] = uuid
 	b["startTime"] = strconv.Itoa(startTime)
 	b["endTime"] = strconv.Itoa(endTime)
@@ -38,8 +38,8 @@ func (u *User) NetMonitor(uuid string, startTime int, endTime int, unit string) 
 
 // NatMonitor provide private internal network statistics of specific virtual machine
 // All internal traffic are included (e.g. package source)
-func (u *User) NatMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse){
-	var b map[string]string
+func (u *User) NatMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["uuid"] = uuid
 	b["startTime"] = strconv.Itoa(startTime)
 	b["endTime"] = strconv.Itoa(endTime)
@@ -53,13 +53,13 @@ func (u *User) NatMonitor(uuid string, startTime int, endTime int, unit string) 
 }
 
 // IOMonitor gives IOPS data
-func (u *User) IOMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse){
-	var b map[string]string
+func (u *User) IOMonitor(uuid string, startTime int, endTime int, unit string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["uuid"] = uuid
 	b["startTime"] = strconv.Itoa(startTime)
 	b["endTime"] = strconv.Itoa(endTime)
 	b["unit"] = unit
-	ret, err := request("IOMonitor",b, u)
+	ret, err := request("IOMonitor", b, u)
 	if err != nil {
 		panic(err)
 	}

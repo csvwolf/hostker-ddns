@@ -6,8 +6,8 @@ import (
 )
 
 // GetDNSRecords returns all DNS records
-func (u *User) GetDNSRecords(d string) (data ApiResponse){
-	var b map[string]string
+func (u *User) GetDNSRecords(d string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["domain"] = d
 	ret, err := request("dnsGetRecords", b, u)
 	if err != nil {
@@ -18,8 +18,8 @@ func (u *User) GetDNSRecords(d string) (data ApiResponse){
 }
 
 // DNSAddRecord adds a DNS record
-func (u *User) DNSAddRecord(domain, header, dnstype, dnsdata string, ttl, priority int) (data ApiResponse){
-	var b map[string]string
+func (u *User) DNSAddRecord(domain, header, dnstype, dnsdata string, ttl, priority int) (data ApiResponse) {
+	b := make(map[string]string)
 	b["domain"] = domain
 	b["header"] = header
 	b["type"] = dnstype
@@ -35,8 +35,8 @@ func (u *User) DNSAddRecord(domain, header, dnstype, dnsdata string, ttl, priori
 }
 
 // DNSEditRecord edit a specific DNS record by ID
-func (u *User) DNSEditRecord(id int, dnsdata string, ttl int, priority int) (data ApiResponse){
-	var b map[string]string
+func (u *User) DNSEditRecord(id int, dnsdata string, ttl int, priority int) (data ApiResponse) {
+	b := make(map[string]string)
 	b["data"] = dnsdata
 	b["id"] = strconv.Itoa(id)
 	b["ttl"] = strconv.Itoa(ttl)
@@ -50,8 +50,8 @@ func (u *User) DNSEditRecord(id int, dnsdata string, ttl int, priority int) (dat
 }
 
 // DNSDeleteRecord deletes a DNS record by ID
-func (u *User) DNSDeleteRecord(id int) (data ApiResponse){
-	var b map[string]string
+func (u *User) DNSDeleteRecord(id int) (data ApiResponse) {
+	b := make(map[string]string)
 	b["id"] = strconv.Itoa(id)
 	ret, err := request("dnsGetRecords", b, u)
 	if err != nil {

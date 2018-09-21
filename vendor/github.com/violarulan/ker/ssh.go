@@ -6,7 +6,7 @@ import (
 )
 
 // ListSshKey returns all sshKey
-func (u *User) ListSshKey() (data ApiResponse){
+func (u *User) ListSshKey() (data ApiResponse) {
 	ret, err := request("listSshKey", nil, u)
 	if err != nil {
 		panic(err)
@@ -16,8 +16,8 @@ func (u *User) ListSshKey() (data ApiResponse){
 }
 
 // CreateSshKey creates a sshkey
-func (u *User) CreateSshKey(name string, key string) (data ApiResponse){
-	var b map[string]string
+func (u *User) CreateSshKey(name string, key string) (data ApiResponse) {
+	b := make(map[string]string)
 	b["name"] = name
 	b["key"] = key
 	ret, err := request("createSshKey", b, u)
@@ -29,8 +29,8 @@ func (u *User) CreateSshKey(name string, key string) (data ApiResponse){
 }
 
 // DeleteSshkey deletes a sshKey by ID
-func (u *User) DeleteSshKey(id int) (data ApiResponse){
-	var d map[string]string
+func (u *User) DeleteSshKey(id int) (data ApiResponse) {
+	d := make(map[string]string)
 	d["id"] = strconv.Itoa(id)
 	ret, err := request("createSshKey", d, u)
 	if err != nil {
