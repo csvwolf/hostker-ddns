@@ -13,11 +13,18 @@ var log = logging.MustGetLogger("services")
 var Crontab = cron.New()
 
 func init() {
-	configure.AddConfigPath(os.Getenv("GOPATH") + "/src/github.com/csvwolf/hostker-ddns")
+	path := os.Getenv("GOPATH") + "/src/github.com/csvwolf/hostker-ddns"
+	configure.AddConfigPath(path)
 	configure.SetConfigName("config")
 	err := configure.ReadInConfig()
 	if err != nil {
-		configure.WriteConfigAs("./config.json")
+		f, err := os.Create(path + "/config.json")
+
+		if err != nil {
+			log.Error(err.Error())
+		}
+
+		defer f.Close()
 		log.Info("初始化配置文件中")
 	}
 }
