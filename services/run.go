@@ -12,12 +12,13 @@ func Run(c *cli.Context) {
 	if err != nil {
 		return
 	}
-	user := ker.User{Email: configure.GetString("email"), AccessToken: configure.GetString("token")}
-	ok := user.Test()
-	if !ok {
-		log.Error("UnAuthorized")
-		return
-	}
+	// quota 方法没了，会导致校验失败 暂时移除
+	// user := ker.User{Email: configure.GetString("email"), AccessToken: configure.GetString("token")}
+	// ok := user.Test()
+	// if !ok {
+	//	log.Error("UnAuthorized")
+	//	return
+	// }
 	if configure.GetString("ip") == ip {
 		log.Info("The Same value")
 		return
