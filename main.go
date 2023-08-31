@@ -1,40 +1,32 @@
 package main
 
 import (
-	"os"
-
-	"github.com/csvwolf/hostker-ddns/services"
-	logging "github.com/op/go-logging"
-	"github.com/urfave/cli"
+	"github.com/csvwolf/hostker-ddns/command"
+	"github.com/spf13/cobra"
+	"log"
 )
 
-var log = logging.MustGetLogger("ddns")
+var verson string
 
 func main() {
-	app := cli.NewApp()
-	app.Name = "Hostker DDNS Register"
-	app.Usage = "DDNS Register???"
 
-	app.Commands = []cli.Command{
-		{
-			Name:   "init",
-			Usage:  "init the config of dns",
-			Action: services.Init,
-		},
-		{
-			Name:   "run",
-			Usage:  "run to refresh ip",
-			Action: services.Run,
-		},
-		{
-			Name:   "start",
-			Usage:  "register to crontab",
-			Action: services.Start,
-		},
+	var (
+		// https://cobra.dev/
+		root = &cobra.Command{
+			Use:   "hostker-ddns",
+			Short: "auto detect and set to hostker dns platform",
+			Long:  "...",
+			Run:   func(cmd *cobra.Command, args []string) {},
+		}
+	)
+
+	root.AddCommand(command.InitCmd)
+	root.AddCommand(command.RunCmd)
+	root.AddCommand(command.StartCmd)
+
+	if err := root.Execute(); err != nil {
+		log.Fatalln(err)
+		return
 	}
 
-	err := app.Run(os.Args)
-	if err != nil {
-		log.Error(err.Error())
-	}
 }
