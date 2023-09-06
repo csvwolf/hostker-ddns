@@ -1,6 +1,6 @@
-FROM golang:buster
+FROM golang:1.21.0
 
-VOLUME /src/github.com/csvwolf/hostker-ddns/config.json
+VOLUME $HOME/.hostker/ddns_config.yaml
 
 RUN go get github.com/csvwolf/hostker-ddns
 ENTRYPOINT hostker-ddns start
