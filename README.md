@@ -1,6 +1,6 @@
 # hostker-ddns
 
-Hostker DDNS 方便用户使用 DDNS 到 Hostker 域名解析服务，建议配合 supervisor 或者 crontab 食用。
+Hostker DDNS 方便用户使用 DDNS 到 Hostker 域名解析服务
 
 ## 使用
 
@@ -14,8 +14,17 @@ go get github.com/csvwolf/hostker-ddns
 hostker-ddns init # 输入必要的信息
 ```
 
-### 在 Crontab 或者 supervisor 中配置
-（待填坑）
+Token 请在：<https://console.hostker.net/index.html#/Account> 获取 API 密钥
+
+### 测试配置
+```sh
+hostker-ddns run # 单次运行，可以在平台中确认
+```
+
+### 运行
+```sh
+hostker-ddns start # 会每分钟跑一次，可以配合 Dockerfile 使用
+```
 
 ## DDNS 是个啥
 家里的 IP 经常变，想绑个域名的话________，这么说你应该懂了。
