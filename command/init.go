@@ -51,7 +51,7 @@ var InitCmd = &cobra.Command{
 			log.Println(err)
 		}
 
-		ker = &api.Ker{Email: conf.Email, SecretKey: conf.Token}
+		ker = api.New(conf.Email, conf.Token)
 
 		if domainList, err = ker.GetDomainList(); err != nil {
 			log.Fatalln(err)
