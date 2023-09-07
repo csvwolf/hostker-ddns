@@ -25,7 +25,7 @@ func run() error {
 		return err
 	}
 
-	ker = &api.Ker{Email: conf.Email, SecretKey: conf.Token}
+	ker = api.New(conf.Email, conf.Token)
 	if conf.Record.Value == ipAddr {
 		log.Println("IP address is not changed")
 		return nil
