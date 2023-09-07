@@ -5,8 +5,11 @@ Hostker DDNS 方便用户使用 DDNS 到 Hostker 域名解析服务
 ## 使用
 
 ### 安装
+现在可以基于 shell 脚本安装依赖了，支持 Mac / Linux；Windows 有 exe，不确定是否可用
 ```sh
-go get github.com/csvwolf/hostker-ddns
+curl -o /tmp/install.sh -L https://github.com/csvwolf/hostker-ddns/raw/master/build.sh && \
+    chmod +x /tmp/install.sh && \
+    /tmp/install.sh
 ```
 
 ### 初始化
