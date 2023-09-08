@@ -8,7 +8,7 @@ on:
       - "*" # triggers only if push new tag version, like `0.8.4` or else
 
 jobs:
-  build:
+  release:
     name: GoReleaser build
     runs-on: ubuntu-latest
 
@@ -31,8 +31,10 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
-  docker:
-    name: Docker
+  publish:
+    name: Docker Publish
+    needs:
+      - release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -50,4 +52,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:{{github.action_ref}},${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:latest,
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:{{ github.action_ref }},${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:latest,
