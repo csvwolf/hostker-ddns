@@ -1,6 +1,11 @@
-FROM golang:1.21.0
+FROM ubuntu:latest
 
-VOLUME $HOME/.hostker/ddns_config.yaml
+VOLUME /root/.hostker
+## 安装依赖
+RUN apt-get update && \
+    apt-get install -y curl
 
-RUN go get github.com/csvwolf/hostker-ddns
-ENTRYPOINT hostker-ddns start
+RUN curl -o /tmp/install.sh -L https://raw.githubusercontent.com/csvwolf/hostker-ddns/master/install.sh && \
+    chmod +x /tmp/install.sh && \
+    /tmp/install.sh
+ENTRYPOINT ["hostker-ddns", "start"]
