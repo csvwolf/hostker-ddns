@@ -48,8 +48,11 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Build and push
         uses: docker/build-push-action@v4
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:{{ github.action_ref }},${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:latest,
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:{{ github.ref_name }},${{ secrets.DOCKERHUB_USERNAME }}/hostker-ddns:latest,
