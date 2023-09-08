@@ -6,8 +6,6 @@ import (
 	"log"
 )
 
-var verson string
-
 func main() {
 
 	var (
@@ -23,7 +21,7 @@ func main() {
 	root.AddCommand(command.InitCmd)
 	root.AddCommand(command.RunCmd)
 	root.AddCommand(command.StartCmd)
-
+	root.AddCommand(command.VersionCmd)
 	if err := root.Execute(); err != nil {
 		log.Fatalln(err)
 		return
